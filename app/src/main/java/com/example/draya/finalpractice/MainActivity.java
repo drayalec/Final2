@@ -1,32 +1,28 @@
 package com.example.draya.finalpractice;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.draya.finalpractice.MainClassList;
-import com.example.draya.finalpractice.R;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    public enum LoginSuccess{
+    public enum LoginSuccess {
         login(1),
         password(2),
         success(0);
 
         private int intValue;
 
-        LoginSuccess(int value){
+        LoginSuccess(int value) {
             intValue = value;
         }
-        public int getIntValue(){
+
+        public int getIntValue() {
             return intValue;
         }
     }
@@ -38,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         final TextView txtLogin = (TextView) findViewById(R.id.idLoginText);
         final TextView txtPassword = (TextView) findViewById(R.id.idPasswordText);
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -47,15 +42,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast toastError = null;
-                LoginSuccess isOK  = null;
+                LoginSuccess isOK = null;
 
-                switch(CheckLogin(txtLogin.getText().toString(),txtPassword.getText().toString())){
+                switch (CheckLogin(txtLogin.getText().toString(), txtPassword.getText().toString())) {
                     case login:
-                        toastError.makeText(getApplicationContext(),getString(R.string.errMessageLogin), toastError.LENGTH_SHORT).show();
+                        toastError.makeText(getApplicationContext(), getString(R.string.errMessageLogin), toastError.LENGTH_SHORT).show();
                         txtLogin.requestFocus();
                         break;
                     case password:
-                        toastError.makeText(getApplicationContext(),getString(R.string.errMessagePassword), toastError.LENGTH_SHORT).show();
+                        toastError.makeText(getApplicationContext(), getString(R.string.errMessagePassword), toastError.LENGTH_SHORT).show();
                         txtPassword.requestFocus();
                         break;
                     default:
@@ -64,25 +59,23 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-
             }
 
         });
 
 
-
     }
 
 
-    LoginSuccess CheckLogin(String txtLogin, String txtPassword){
+    LoginSuccess CheckLogin(String txtLogin, String txtPassword) {
         String holdLogin = "Alec";
         String holdPass = "password";
 
-        if(!(holdLogin.equals(txtLogin))){
+        if (!(holdLogin.equals(txtLogin))) {
             return LoginSuccess.login;
         }
 
-        if (!(holdPass.equals(txtPassword))){
+        if (!(holdPass.equals(txtPassword))) {
             return LoginSuccess.password;
         }
 
